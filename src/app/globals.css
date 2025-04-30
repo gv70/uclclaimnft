@@ -3,20 +3,34 @@
 @tailwind utilities;
 
 :root {
-	line-height: 1.5;
-	font-weight: 400;
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	font-family: 'Inter', sans-serif;
-	font-optical-sizing: auto;
-	font-style: normal;
-	font-variation-settings: 'slnt' 0;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: 'slnt' 0;
 }
 
 @layer base {
-	body {
-		@apply bg-zinc-950 text-neutral-200;
-	}
+  /* sfondo e testo di default */
+  body {
+    @apply bg-zinc-950 text-neutral-200;
+  }
+
+  /* tipografia globale */
+  h1, h2, h3 {
+    @apply font-heading text-zinc-50;
+  }
+  p, li {
+    @apply font-body text-neutral-300;
+  }
+
+  /* stili per i link */
+  a {
+    @apply text-primary hover:text-primary-light transition;
+  }
 }
