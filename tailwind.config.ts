@@ -1,3 +1,4 @@
+// tailwind.config.ts
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -8,10 +9,23 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        primary: {
+          DEFAULT: '#4f46e5',      // blu-viola per call-to-action
+          light:   '#6366f1',
+          dark:    '#4338ca',
+        },
+        accent:  '#facc15',        // giallo-oro per highlights
+      },
+      fontFamily: {
+        heading: ['Inter', 'sans-serif'],
+        body:    ['"Open Sans"', 'sans-serif'],
+      },
+      borderRadius: {
+        xl: '1.5rem',              // bottoni/contorni più arrotondati
+      },
+      boxShadow: {
+        card: '0 4px 14px rgba(0,0,0,0.25)',
       },
     },
   },
