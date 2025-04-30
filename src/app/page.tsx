@@ -117,17 +117,8 @@ export default function Home() {
 function Header() {
   return (
     <header className="flex flex-row items-center">
-      <Image
-        src={thirdwebIcon}
-        alt=""
-        className="size-[150px] md:size-[150px]"
-        style={{
-          filter: "drop-shadow(0px 0px 24px #a726a9a8)",
-        }}
-      />
-
       <h1 className="text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-6 text-zinc-100">
-        NFT Claim App
+        UCL NFT Claim App
       </h1>
     </header>
   );
