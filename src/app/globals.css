@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,16 +11,15 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Inter', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  font-variation-settings: 'slnt' 0;
+  font-variation-settings: "slnt" 0;
 }
 
 @layer base {
   /* sfondo e testo di default */
   body {
-    @apply bg-zinc-950 text-neutral-200;
+    @apply bg-zinc-950 text-neutral-200 font-body;
   }
 
   /* tipografia globale */
@@ -32,5 +33,13 @@
   /* stili per i link */
   a {
     @apply text-primary hover:text-primary-light transition;
+  }
+
+  /* scrollbar (opzionale) */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-700 rounded;
   }
 }
