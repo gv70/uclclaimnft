@@ -22,7 +22,7 @@ export default function Home() {
   const contract = getContract({
     client: client,
     chain: chain,
-    address: "0xBE83E0aF6f9241354e2f7C011a73BecE637de9aD"
+    address: "0xEe4B57BE7154f72Dbc15ECa0dcab5a7f78109d67"
   });
 
   const { data: contractMetadata, isLoading: isContractMetadataLaoding } = useReadContract( getContractMetadata,
