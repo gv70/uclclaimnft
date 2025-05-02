@@ -1,23 +1,23 @@
 'use client';
 
-import Image from "next/image";
+import React, { useState } from 'react';
+import Image from 'next/image';
 import {
   ConnectButton,
   MediaRenderer,
   TransactionButton,
   useActiveAccount,
-  useReadContract
-} from "thirdweb/react";
-import { client } from "./client";
-import { defineChain, getContract, toEther } from "thirdweb";
-import { getContractMetadata } from "thirdweb/extensions/common";
+  useReadContract,
+} from 'thirdweb/react';
+import { client } from './client';
+import { defineChain, getContract, toEther } from 'thirdweb';
+import { getContractMetadata } from 'thirdweb/extensions/common';
 import {
   claimTo,
   getActiveClaimCondition,
   getTotalClaimedSupply,
-  nextTokenIdToMint
-} from "thirdweb/extensions/erc721";
-import { useState } from "react";
+  nextTokenIdToMint,
+} from 'thirdweb/extensions/erc721';
 
 export default function Home() {
   const account = useActiveAccount();
@@ -27,37 +27,35 @@ export default function Home() {
   const contract = getContract({
     client,
     chain,
-    address: "0x51b5B9C090C2706FD63cB7bEaFf84d2cDf428119",
+    address: '0x51b5B9C090C2706FD63cB7bEaFf84d2cDf428119',
   });
 
-  const {
-    data: metadata,
-    isLoading: loadingMetadata
-  } = useReadContract(getContractMetadata, { contract });
-
-  const {
-    data: claimedSupply,
-    isLoading: loadingClaimed
-  } = useReadContract(getTotalClaimedSupply, { contract });
-
-  const {
-    data: totalSupply,
-    isLoading: loadingTotal
-  } = useReadContract(nextTokenIdToMint, { contract });
-
-  const {
-    data: claimCondition
-  } = useReadContract(getActiveClaimCondition, { contract });
+  const { data: metadata, isLoading: loadingMetadata } = useReadContract(
+    getContractMetadata,
+    { contract }
+  );
+  const { data: claimedSupply, isLoading: loadingClaimed } = useReadContract(
+    getTotalClaimedSupply,
+    { contract }
+  );
+  const { data: totalSupply, isLoading: loadingTotal } = useReadContract(
+    nextTokenIdToMint,
+    { contract }
+  );
+  const { data: claimCondition } = useReadContract(
+    getActiveClaimCondition,
+    { contract }
+  );
 
   const getPrice = (qty: number) => {
     const pricePerToken = parseInt(
-      claimCondition?.pricePerToken.toString() || "0"
+      claimCondition?.pricePerToken.toString() || '0'
     );
     return toEther(BigInt(qty * pricePerToken));
   };
 
-  const claimed = Number(claimedSupply?.toString() ?? "0");
-  const total = Number(totalSupply?.toString() ?? "1");
+  const claimed = Number(claimedSupply?.toString() ?? '0');
+  const total = Number(totalSupply?.toString() ?? '1');
   const progress = Math.min(100, (claimed / total) * 100);
 
   return (
@@ -65,7 +63,8 @@ export default function Home() {
       <div className="bg-zinc-800 rounded-2xl shadow-card p-8 max-w-sm w-full text-center">
         <Header />
 
-        <ConnectButton client={client} chain={chain} className="my-4" />
+        {/* Connect wallet */}
+        <ConnectButton className="my-4" />
 
         {/* Social Proof */}
         <div className="flex items-center gap-2 mt-4">
@@ -139,12 +138,12 @@ export default function Home() {
           transaction={() =>
             claimTo({
               contract,
-              to: account?.address || "",
+              to: account?.address || '',
               quantity: BigInt(quantity),
             })
           }
           onTransactionConfirmed={async () => {
-            alert("NFT Claimed!");
+            alert('NFT Claimed!');
             setQuantity(1);
           }}
         >
@@ -176,15 +175,16 @@ function Header() {
 
 function HowItWorks() {
   const steps = [
-    "Connect your wallet",
-    "Choose quantity",
-    "Confirm the transaction",
-    "Receive your NFT",
+    'Connect your wallet',
+    'Choose quantity',
+    'Confirm the transaction',
+    'Receive your NFT',
   ];
   return (
     <ul className="space-y-3 text-left mt-8">
       {steps.map((step, i) => (
         <li key={i} className="flex items-start gap-2">
+          {/* inline SVG check icon */}
           <svg
             className="mt-1 h-5 w-5 text-secondary"
             xmlns="http://www.w3.org/2000/svg"
