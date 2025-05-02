@@ -31,25 +31,29 @@ export default function Home() {
     address: "0x51b5B9C090C2706FD63cB7bEaFf84d2cDf428119",
   });
 
-  const { data: metadata, isLoading: loadingMetadata } = useReadContract(
-    getContractMetadata,
-    { contract }
-  );
-  const { data: claimedSupply, isLoading: loadingClaimed } = useReadContract(
-    getTotalClaimedSupply,
-    { contract }
-  );
-  const { data: totalSupply, isLoading: loadingTotal } = useReadContract(
-    nextTokenIdToMint,
-    { contract }
-  );
-  const { data: claimCondition } = useReadContract(
-    getActiveClaimCondition,
-    { contract }
-  );
+  const {
+    data: metadata,
+    isLoading: loadingMetadata
+  } = useReadContract(getContractMetadata, { contract });
+
+  const {
+    data: claimedSupply,
+    isLoading: loadingClaimed
+  } = useReadContract(getTotalClaimedSupply, { contract });
+
+  const {
+    data: totalSupply,
+    isLoading: loadingTotal
+  } = useReadContract(nextTokenIdToMint, { contract });
+
+  const {
+    data: claimCondition
+  } = useReadContract(getActiveClaimCondition, { contract });
 
   const getPrice = (qty: number) => {
-    const pricePerToken = parseInt(claimCondition?.pricePerToken.toString() || "0");
+    const pricePerToken = parseInt(
+      claimCondition?.pricePerToken.toString() || "0"
+    );
     return toEther(BigInt(qty * pricePerToken));
   };
 
