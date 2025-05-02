@@ -10,7 +10,7 @@ import {
   useReadContract,
 } from 'thirdweb/react';
 import { client } from './client';
-import { defineChain, getContract, toEther } from 'thirdweb';
+import { getContract, toEther } from 'thirdweb';
 import { getContractMetadata } from 'thirdweb/extensions/common';
 import {
   claimTo,
@@ -21,12 +21,10 @@ import {
 
 export default function Home() {
   const account = useActiveAccount();
-  const chain = defineChain(84532);
   const [quantity, setQuantity] = useState(1);
 
   const contract = getContract({
     client,
-    chain,
     address: '0x51b5B9C090C2706FD63cB7bEaFf84d2cDf428119',
   });
 
@@ -64,7 +62,9 @@ export default function Home() {
         <Header />
 
         {/* Connect wallet */}
-        <ConnectButton className="my-4" />
+        <div className="my-4">
+          <ConnectButton />
+        </div>
 
         {/* Social Proof */}
         <div className="flex items-center gap-2 mt-4">
